@@ -23,10 +23,10 @@ function writeFile(data){
   ![badge](https://img.shields.io/badge/license-${data.license}-red)
 
   ## Here is the link for the project 
-  ${data.linkInput}
+  ${data.link}
 
   ## If you have any questions, please contact me at my email below
-  ${data.emai}
+  ${data.email}
   `  
   ;
 }

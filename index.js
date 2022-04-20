@@ -66,7 +66,7 @@ const promptUser=()=>{
           },
           {
             type: 'input',
-            name: 'link',
+            name: 'email',
             message: 'Enter your email. (Required)',
             validate: email => {
               if (email) {
@@ -87,7 +87,7 @@ const promptUser=()=>{
      try{
          const data =await promptUser();
          const writeReadMe = writeFile(data);
-         await createFile('./dist/README.md', writeReadMe);
+         await createFile('./Develop/dist/README.md', writeReadMe);
          console.log('File Created');
      }
      catch(err){
