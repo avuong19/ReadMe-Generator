@@ -1,6 +1,9 @@
 //Include packages needed for this application
 const inquirer = require ("inquirer");
 const fs = require ("fs");
+const writeFile= require('./Develop/utils/generateReadMe');
+const util = require("util");
+const createFile=util.promisify(fs.writeFile);
 
 //Create an array of questions for user input
 const promptUser=()=>{
@@ -61,15 +64,35 @@ const promptUser=()=>{
               }
             }
           },
+          {
+            type: 'input',
+            name: 'link',
+            message: 'Enter your email. (Required)',
+            validate: email => {
+              if (email) {
+                return true;
+              } else {
+                console.log('You need to enter your email address!');
+                return false;
+              }
+            }
+          },
+         
 
     ])
 }
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
 // TODO: Create a function to initialize app
-function init() {}
-
+ async function init() {
+     try{
+         const data =await promptUser();
+         const writeReadMe = writeFile(data);
+         await createFile('./dist/README.md', writeReadMe);
+         console.log('File Created');
+     }
+     catch(err){
+         console.log(err);
+     }
+ };
 // Function call to initialize app
 init();
